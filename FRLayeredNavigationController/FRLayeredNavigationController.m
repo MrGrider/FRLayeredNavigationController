@@ -84,6 +84,7 @@ typedef enum {
         _outOfBoundsViewController = nil;
         _userInteractionEnabled = YES;
         _dropLayersWhenPulledRight = NO;
+        _defaultAnimationDirection = FRLayeredAnimationDirectionRight;
 
         [self addChildViewController:layeredRC];
         [layeredRC didMoveToParentViewController:self];
@@ -629,7 +630,7 @@ typedef enum {
 
 - (void)popViewControllerAnimated:(BOOL)animated
 {
-    [self popViewControllerAnimated:animated direction:FRLayeredAnimationDirectionDown];
+    [self popViewControllerAnimated:animated direction:self.defaultAnimationDirection];
 }
 
 - (void)popViewControllerAnimated:(BOOL)animated direction:(FRLayeredAnimationDirection)direction
@@ -690,7 +691,7 @@ typedef enum {
 
 - (void)popToViewController:(UIViewController *)vc animated:(BOOL)animated
 {
-    [self popToViewController:vc animated:animated direction:FRLayeredAnimationDirectionDown];
+    [self popToViewController:vc animated:animated direction:self.defaultAnimationDirection];
 }
 
 - (void)popToViewController:(UIViewController *)vc

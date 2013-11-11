@@ -267,4 +267,6 @@ typedef enum {
  */
 @property(nonatomic, weak) id<FRLayeredNavigationControllerDelegate> delegate;
 
+@property (nonatomic) FRLayeredAnimationDirection defaultAnimationDirection;
+
 @end
