@@ -253,9 +253,19 @@ typedef enum {
 @property (nonatomic, readonly) NSArray *viewControllers;
 
 /**
+ * Default is NO
+ */
+@property (nonatomic) BOOL showDropLayerNotification;
+
+/**
  * Wheater to drop all layers except the root view controller when pulled far enough to the right
  */
 @property (nonatomic) BOOL dropLayersWhenPulledRight;
+
+/**
+ * When top layer is dragged into drop zone, it will be poped out
+ */
+@property (nonatomic) CGFloat dropZoneWidth;
 
 /**
  * The view controller in the top layer. (read-only)
