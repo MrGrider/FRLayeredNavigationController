@@ -245,7 +245,7 @@ typedef enum {
             }
             
             if (self.dropLayersWhenPulledRight && [self layersInDropZone]) {
-                [self popToRootViewControllerAnimated:FRLayeredAnimationDirectionRight];
+                [self popViewControllerAnimated:YES direction:self.defaultAnimationDirection];
             }
             
             [UIView animateWithDuration:0.2 animations:^{
@@ -599,10 +599,10 @@ typedef enum {
 - (BOOL)layersInDropZone
 {
     if ([self.layeredViewControllers count] > 1) {
-        FRLayerController *lastLayerController = self.layeredViewControllers.lastObject;
-        FRLayeredNavigationItem *firstLayerNavigationItem = lastLayerController.layeredNavigationItem;
+        FRLayerController *topLayerController = self.layeredViewControllers.lastObject;
+        FRLayeredNavigationItem *topLayerNavigationItem = topLayerController.layeredNavigationItem;
         
-        if (firstLayerNavigationItem.currentViewPosition.x > self.view.bounds.size.width - self.dropZoneWidth) {
+        if (topLayerNavigationItem.currentViewPosition.x > self.view.bounds.size.width - self.dropZoneWidth) {
             return YES;
         }
     }
