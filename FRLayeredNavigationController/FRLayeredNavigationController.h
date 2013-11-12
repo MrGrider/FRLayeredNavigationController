@@ -70,6 +70,14 @@
 - (void)layeredNavigationController:(FRLayeredNavigationController*)layeredController
                   didMoveController:(UIViewController*)controller;
 
+/**
+ * Sent by the layered navigation controller when it has finished poping out the topmost view controller.
+ *
+ * @param layeredController The layered controller being interacted with.
+ * @param controller The view controller which has been popped.
+ */
+- (void)layeredNavigationController:(FRLayeredNavigationController*)layeredController didPopViewController:(UIViewController*)controller;
+
 @end
 
 typedef enum {

@@ -245,7 +245,11 @@ typedef enum {
             }
             
             if (self.dropLayersWhenPulledRight && [self layersInDropZone]) {
+                if ([self.delegate respondsToSelector:@selector(layeredNavigationController:didPopViewController:)]) {
+                    [self.delegate layeredNavigationController:self didPopViewController:self.topViewController];
+                }
                 [self popViewControllerAnimated:YES direction:self.defaultAnimationDirection];
+                return;
             }
             
             [UIView animateWithDuration:0.2 animations:^{
@@ -400,6 +404,13 @@ typedef enum {
     if (fabs(velocity) > FRLayeredNavigationControllerSnappingVelocityThreshold) {
         if (velocity > 0) {
             method = SnappingPointsMethodExpand;
+            if (self.dropLayersWhenPulledRight) {
+                if ([self.delegate respondsToSelector:@selector(layeredNavigationController:didPopViewController:)]) {
+                    [self.delegate layeredNavigationController:self didPopViewController:self.topViewController];
+                }
+                [self popViewControllerAnimated:YES direction:self.defaultAnimationDirection];
+                return;
+            }
         } else {
             method = SnappingPointsMethodCompact;
         }
@@ -936,7 +947,5 @@ typedef enum {
         compact();
     }
 }
-
-#pragma mark - properties
 
 @end
