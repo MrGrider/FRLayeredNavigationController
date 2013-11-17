@@ -244,7 +244,7 @@ typedef enum {
                 [self hideDropNotification];
             }
             
-            if (self.dropLayersWhenPulledRight && [self layersInDropZone]) {
+            if (self.dropLayersWhenPulledRight && [self layersInDropZone] && self.viewControllers.count > 1) {
                 if ([self.delegate respondsToSelector:@selector(layeredNavigationController:didPopViewController:)]) {
                     [self.delegate layeredNavigationController:self didPopViewController:self.topViewController];
                 }
@@ -404,7 +404,7 @@ typedef enum {
     if (fabs(velocity) > FRLayeredNavigationControllerSnappingVelocityThreshold) {
         if (velocity > 0) {
             method = SnappingPointsMethodExpand;
-            if (self.dropLayersWhenPulledRight) {
+            if (self.dropLayersWhenPulledRight && self.viewControllers.count > 1) {
                 if ([self.delegate respondsToSelector:@selector(layeredNavigationController:didPopViewController:)]) {
                     [self.delegate layeredNavigationController:self didPopViewController:self.topViewController];
                 }
